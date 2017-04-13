@@ -1,6 +1,7 @@
 package server;
 
 public class Main {
-
-    System.out.println("Existance is suffering");
+    public static void main(String[] args) {
+        System.out.println("halp");
+    }
 }
