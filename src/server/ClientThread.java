@@ -3,8 +3,12 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.Queue;
 public class ClientThread extends Thread{
 	protected Socket socket;
 
@@ -13,15 +17,23 @@ public class ClientThread extends Thread{
 	    }
 	    
 	    public void run(){
-	    	InputStream in;
+	    	
+	    	ObjectOutputStream out;
 			try {
-				in = (socket.getInputStream());
-				ObjectInputStream oin = new ObjectInputStream(new BufferedInputStream(in));
 				
+				ObjectInputStream oin = new ObjectInputStream(socket.getInputStream());
+				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+	    	
+	    }
+	    
+	    public static void setup(Message x){
+	    	Queue<Message> MessageQueue = new LinkedList<Message>();
+	    	
 	    	
 	    }
 
