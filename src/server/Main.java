@@ -1,5 +1,6 @@
 package server;
 
+<<<<<<< HEAD
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -33,4 +34,10 @@ public class Main {
     	
     }
     
+=======
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("halp");
+    }
+>>>>>>> refs/remotes/origin/master
 }
