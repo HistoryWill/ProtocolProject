@@ -8,9 +8,9 @@ public class Message implements Serializable{
 	public String MessageBody;
 	public LocalDateTime TimeStamp;
 	
-	public Message(String[] Recipients, String Body){
+	public Message(String[] Recipients){
 		MessageRecipients = Recipients;
-		MessageBody = Body;
+		MessageBody = "";
 				
 	}
 	
