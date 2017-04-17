@@ -7,7 +7,7 @@ import java.util.Queue;
 public class Main {
 	public static final int port = 8080;
 	
-	public HashSet<String> users;
+	public HashSet<String> user;
 	public Queue<String> messages;
 	
     public static void main(String[] args) throws Exception {
