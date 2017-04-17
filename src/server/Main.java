@@ -13,7 +13,7 @@ public class Main {
 	final static int  portnumber = 8080;
 	static ServerSocket serverSocket = null;
     static Socket socket = null;
-    static Queue<Message> messageStack = new LinkedList(); //This will act as the central message Depositroy
+    static Queue<String> messageStack = new LinkedList(); //This will act as the central message Depositroy
     
     public static void main(String args[]){
     	
@@ -30,9 +30,8 @@ public class Main {
     	new ServerThread(serverSocket).start();
     }
     
-    public static void severLoop(){
-    	
-    }
+   
+}
     
 =======
 public class Main {
