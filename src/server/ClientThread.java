@@ -25,10 +25,17 @@ public class ClientThread extends Thread{
     	static DataOutputStream output;
 	    public void run(){
 	    	
+<<<<<<< HEAD
 	    	 
 			try {
 				input = new DataInputStream(socket.getInputStream());
 				output = new DataOutputStream(socket.getOutputStream());
+=======
+	    	
+			try {
+				
+				
+>>>>>>> refs/remotes/origin/master
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

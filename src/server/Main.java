@@ -1,6 +1,11 @@
 package server;
 
 <<<<<<< HEAD
+import java.net.ServerSocket;
+import java.util.HashSet;
+import java.util.Queue;
+
+=======
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -33,7 +38,31 @@ public class Main {
     public static void severLoop(){
     	
     }
+<<<<<<< HEAD
     
 =======
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
+public class Main {
+	public static final int port = 8080;
+	
+	public HashSet<String> user;
+	public Queue<String> messages;
+	
+    public static void main(String[] args) throws Exception {
+        System.out.println("WE'RE IN BOYS");
+        ServerSocket serverSocket = new ServerSocket(port);
+        
+        
+    }
+<<<<<<< HEAD
+    
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> master
+>>>>>>> refs/remotes/origin/master
 }
