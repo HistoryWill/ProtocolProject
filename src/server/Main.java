@@ -1,11 +1,10 @@
 package server;
 
-<<<<<<< HEAD
+
 import java.net.ServerSocket;
 import java.util.HashSet;
 import java.util.Queue;
 
-=======
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -15,7 +14,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Main {
-	final static int  portnumber = 8080;
+	final static int  portnumber = 1234;
 	static ServerSocket serverSocket = null;
     static Socket socket = null;
     static Queue<String> messageStack = new LinkedList(); //This will act as the central message Depositroy
@@ -35,35 +34,8 @@ public class Main {
     	new ServerThread(serverSocket).start();
     }
     
-<<<<<<< HEAD
-   
-}
-=======
+
     public static void severLoop(){
     	
     }
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/master
-    
-=======
->>>>>>> refs/remotes/origin/master
-public class Main {
-	public static final int port = 8080;
-	
-	public HashSet<String> user;
-	public Queue<String> messages;
-	
-    public static void main(String[] args) throws Exception {
-        System.out.println("WE'RE IN BOYS");
-        ServerSocket serverSocket = new ServerSocket(port);
-        
-        
-    }
-<<<<<<< HEAD
-    
-=======
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> master
-}
+
