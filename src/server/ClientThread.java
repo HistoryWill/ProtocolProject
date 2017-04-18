@@ -18,11 +18,10 @@ public class ClientThread extends Thread{
 	    
 	    public void run(){
 	    	
-	    	ObjectOutputStream out;
+	    	
 			try {
 				
-				ObjectInputStream oin = new ObjectInputStream(socket.getInputStream());
-				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

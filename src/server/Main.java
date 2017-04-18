@@ -38,6 +38,7 @@ public class Main {
     public static void severLoop(){
     	
     }
+<<<<<<< HEAD
     
 =======
 >>>>>>> refs/remotes/origin/master
@@ -58,4 +59,6 @@ public class Main {
 =======
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> master
 }
