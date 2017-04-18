@@ -1,45 +1,56 @@
 package client;
 
+import java.util.*;
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Main {
-	public static Scanner scan = new Scanner(System.in);
-	public static Socket socket;
-	public static int port = 8080;
-	public static InputStream is;
-	public static ObjectOutputStream os;
+	static Scanner scan = new Scanner(System.in);
+	static Socket socket;
+	static DataInputStream input;
+	static DataOutputStream output;
+	final static int port = 1234;
+	static String host = null;
+	static String myName = null;
 	
-	public static void main(String[] args) throws Exception{
-		System.out.println("Enter the url for the server.");
-		String connection = scan.nextLine();
+	public static void main(String[] args) throws Exception {
+		System.out.println("Enter the URL of the server.");
+		host = scan.nextLine();
 		
-
+		/*
+		 * connect to server
+		 * initiate I/O streams
+		 * establish user name
+		 */
 		try {
-			//connect
-			socket = new Socket(connection,port);
+			socket = new Socket(host,port);
+			input = new DataInputStream(socket.getInputStream());
+			output = new DataOutputStream(socket.getOutputStream());
 			
-			//establish input/output streams
-			is = new ObjectInputStream(socket.getInputStream());
-			os = new ObjectOutputStream(socket.getOutputStream());
 			
-			//communicate
+		} catch (IOException e) {
+			System.err.println(e);
+		}
+		
+		/*
+		 * client/server communication
+		 */
+		try {
 			while (true) {
-				String message = (String)is.read();
-				sendMessage(message);
+				String fromServer = input.readUTF();
+				String[] split = fromServer.split(" ");
+				if (fromServer != null && !split[0].equals(myName)) {
+					System.out.println(fromServer);
+				}
+				String toServer = scan.nextLine();
+				if (toServer != null) {
+					output.writeUTF(myName+": "+toServer);
+					output.flush();
+				}
 			}
 		} catch (IOException e) {
 			System.err.println(e);
 		}
-		
 	}
 	
-	public static void sendMessage(String message) {
-		try {
-			os.writeObject(message);
-		} catch (IOException e) {
-			System.err.println(e);
-		}
-	}
 }
