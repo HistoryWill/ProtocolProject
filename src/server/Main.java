@@ -1,64 +1,92 @@
 package server;
 
-<<<<<<< HEAD
-import java.net.ServerSocket;
-import java.util.HashSet;
-import java.util.Queue;
-
-=======
-
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
+import java.io.*;
+import java.net.*;
 
 public class Main {
-	final static int  portnumber = 8080;
-	static ServerSocket serverSocket = null;
-    static Socket socket = null;
-    static Queue<Message> messageStack = new LinkedList(); //This will act as the central message Depositroy
-    
-    public static void main(String args[]){
-    	
-    	setup();
-    	
-    }
-    
-    public static void setup(){
-    	try {
-            serverSocket = new ServerSocket(portnumber);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    	new ServerThread(serverSocket).start();
-    }
-    
-    public static void severLoop(){
-    	
-    }
-<<<<<<< HEAD
-    
-=======
->>>>>>> refs/remotes/origin/master
-public class Main {
-	public static final int port = 8080;
+	final static int port = 1234;
+	static ServerSocket serverSocket;
+	static Socket socket;
+	static HashSet<Socket> sockets = new HashSet<Socket>();
 	
-	public HashSet<String> user;
-	public Queue<String> messages;
+	public static void main(String[] args) {
+		//startup
+		System.out.println("Server started.");
+		
+		
+		/*
+		 * for running multiple clients
+		 */
+		class ClientThread{
+			Socket socket;
+			DataInputStream input;
+			DataOutputStream output;
+			Queue<String> messages = new PriorityQueue<String>();
+			
+			public ClientThread(Socket s){
+				this.socket = s;
+			}
+			
+			public void run() {
+				
+				//create I/O streams
+				try {
+					input = new DataInputStream(socket.getInputStream());
+					output = new DataOutputStream(socket.getOutputStream());
+				}	catch (IOException e) {
+					System.err.println(e);
+				}
+				
+				//communicate with clients
+				while (true) {
+					try {
+						String fromClient = input.readUTF();
+						String toClient = null;
+						if (!fromClient.equals(null)) {
+							messages.add(fromClient);
+						}
+						if (!messages.isEmpty()) {
+							toClient = messages.remove();
+						}
+						if (!toClient.equals(null)) {
+							output.writeUTF(toClient);
+						}
+					} catch (IOException e) {
+						System.err.println(e);
+					}
+				}
+			}
+			
+			
+		}
+		
+		/*
+		 * Establish the server
+		 */
+		try {
+			serverSocket = new ServerSocket(port);
+		} catch (IOException e) {
+			System.err.println(e);
+		}
+		
+		/*
+		 * Connect clients
+		 */
+		while (true) {
+			try {
+				socket = serverSocket.accept();
+				if (!sockets.contains(socket)) {
+					sockets.add(socket);
+					System.out.println("Client connected.");
+				}
+			}	catch (IOException e) {
+				System.err.println(e);
+			}
+			new ClientThread(socket).run();
+		}
+	}
 	
-    public static void main(String[] args) throws Exception {
-        System.out.println("WE'RE IN BOYS");
-        ServerSocket serverSocket = new ServerSocket(port);
-        
-        
-    }
-<<<<<<< HEAD
-    
-=======
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> master
+	
+	
 }
