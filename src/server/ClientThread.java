@@ -17,8 +17,6 @@ public class ClientThread extends Thread{
 	    }
 	    
 	    public void run(){
-	    	
-	    	
 			try {
 				
 				
@@ -30,10 +28,10 @@ public class ClientThread extends Thread{
 	    	
 	    }
 	    
-	    public static void setup(Message x){
-	    	Queue<Message> MessageQueue = new LinkedList<Message>();
+	    public void setup(){
+	    	Queue<String> MessageQueue = new LinkedList<String>();
 	    	
-	    	
+	    
 	    }
 
 	}
