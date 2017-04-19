@@ -1,4 +1,4 @@
-package server;
+package client;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -14,15 +14,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
-public class ClientThread extends Thread{
+public class ListeningThread extends Thread{
 	protected Socket socket;
-	static Queue<Message> clientmessageStack = new LinkedList<Message>();
-	    public ClientThread(Socket clientSocket) {
+	
+	static Queue<String> clientmessageStack = new LinkedList<String>();
+	    public ListeningThread(Socket clientSocket) {
 	        this.socket = clientSocket;
+	       
 	    }
-
-	    
-	 
 	    static String fromServer;
 	    static DataInputStream input;
     	static DataOutputStream output;
@@ -32,7 +31,6 @@ public class ClientThread extends Thread{
 	    	
 	    	
 	    	 
-
 			try {
 				in = new BufferedReader (new InputStreamReader(socket.getInputStream()));
 				output = new DataOutputStream(socket.getOutputStream());
@@ -42,8 +40,6 @@ public class ClientThread extends Thread{
 			}
 			
 			while(true){
-				System.out.println("E");
-				messageNotify("Fuck you");
 				try {
 					String meme;
 					
@@ -58,7 +54,7 @@ public class ClientThread extends Thread{
 					e.printStackTrace();
 				}
 				System.out.println(fromServer);
-				Main.notifyAllOfMessage(fromServer);
+				Main.notifyOfMessage(fromServer);
 			
 				
 				
@@ -67,9 +63,6 @@ public class ClientThread extends Thread{
 			
 	    	
 	    }
-
-	    
-
 		public void messageNotify(String fromServer2) {
 			try {
 				output.writeUTF(fromServer2);
@@ -82,6 +75,3 @@ public class ClientThread extends Thread{
 			
 			
 		}
-
-
-
