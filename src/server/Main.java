@@ -1,12 +1,9 @@
 package server;
 
-<<<<<<< HEAD
-=======
-
 import java.net.ServerSocket;
 import java.util.HashSet;
 import java.util.Queue;
->>>>>>> master
+
 
 
 import java.io.IOException;
@@ -18,26 +15,24 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Main {
-<<<<<<< HEAD
-	final static int  portNumber = 8080;
-	static ServerSocket serverSocket = null;
-    static Socket socket = null;
-    static Queue<String> messageStack = new LinkedList(); //This will act as the central message Depositroy
+
+
     
     static ArrayList<ClientThread> clients = new ArrayList<>();
-=======
-	final static int  portnumber = 1234;
+
+	final static int  portNumber = 1234;
 	static ServerSocket serverSocket = null;
     static Socket socket = null;
     static Queue<String> messageStack = new LinkedList(); //This will act as the central message Depositroy
->>>>>>> master
+
     
     public static void main(String args[]){
-    	
+    	System.out.println("FUCK GIT3");
     	try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
-    	
+    		System.out.println("FUCK GIT2");
     		while (true) {
     			try {
+    				System.out.println("FUCK GIT1");
     				socket = serverSocket.accept();
         			// new thread for a client
     				ClientThread client = new ClientThread(socket); 
@@ -54,7 +49,7 @@ public class Main {
     }
     
     
-<<<<<<< HEAD
+
     
     
 
@@ -67,10 +62,8 @@ public class Main {
 
 
 }
-=======
 
-    public static void severLoop(){
-    	
-    }
 
->>>>>>> master
+    
+
+
