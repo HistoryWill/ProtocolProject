@@ -1,4 +1,4 @@
-package server;
+package client;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -14,34 +14,46 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
-public class ClientThread extends Thread{
+public class ListeningThread extends Thread{
 	protected Socket socket;
 	static Queue<String> clientmessageStack = new LinkedList<String>();
-	    public ClientThread(Socket clientSocket) {
+	    public ListeningThread(Socket clientSocket) {
 	        this.socket = clientSocket;
 	    }
 	    static String fromServer;
 	    static DataInputStream input;
     	static DataOutputStream output;
-	    public void run(){
-
+    	static BufferedReader in;
+	    @SuppressWarnings("deprecation")
+		public void run(){
+	    	
+	    	
+	    	 
 			try {
-				input = new DataInputStream(socket.getInputStream());
+				in = new BufferedReader (new InputStreamReader(socket.getInputStream()));
 				output = new DataOutputStream(socket.getOutputStream());
 
 			}catch(IOException e){
-				
+				System.out.println(e);
 			}
-			System.out.println("FUCK GIT");
+			
 			while(true){
-				
+				System.out.println("E");
+				messageNotify("Fuck you");
 				try {
-					fromServer = input.readUTF();
+					String meme;
+					
+					while((meme = in.readLine())!=null){
+						System.out.println(meme);
+						System.out.println("got to");
+					}
+					System.out.println("E1");
+					fromServer = input.readLine();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					System.out.println(e);
 					e.printStackTrace();
 				}
-				
+				System.out.println(fromServer);
 				Main.notifyAllOfMessage(fromServer);
 			
 				
@@ -51,28 +63,15 @@ public class ClientThread extends Thread{
 			
 	    	
 	    }
-
 		public void messageNotify(String fromServer2) {
 			try {
 				output.writeUTF(fromServer2);
 				output.flush();
 			} 
 			catch(IOException e){
-				
+				System.out.println(e);
 			}
 		}
 			
 			
-		
-
-	    
-	    public void setup(){
-	    	Queue<String> MessageQueue = new LinkedList<String>();
-	    	
-	    
-	    }
-
-	}
-
-
-
+		}
