@@ -8,10 +8,11 @@ public class Main {
 	static Scanner scan = new Scanner(System.in);
 	static Socket socket;
 	static DataInputStream input;
-	static DataOutputStream output;
+	static OutputStream output;
 	final static int port = 1234;
 	static String host = null;
 	static String myName = null;
+	static PrintWriter out;
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Enter the URL of the server.");
@@ -25,8 +26,8 @@ public class Main {
 		try {
 			socket = new Socket(host,port);
 			input = new DataInputStream(socket.getInputStream());
-			output = new DataOutputStream(socket.getOutputStream());
-			
+			output = socket.getOutputStream();		
+			out = new PrintWriter(output);
 			
 		} catch (IOException e) {
 			System.err.println(e);
@@ -43,9 +44,10 @@ public class Main {
 					System.out.println(fromServer);
 				}
 				String toServer = scan.nextLine();
+				System.out.println('E');
 				if (toServer != null) {
-					output.writeUTF(myName+": "+toServer);
-					output.flush();
+					out.print(myName+": "+toServer);
+					//output.flush();
 				}
 			}
 		} catch (IOException e) {
