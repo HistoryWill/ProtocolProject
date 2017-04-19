@@ -1,41 +1,42 @@
 package server;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.LinkedList;
-import java.util.Queue;
-public class ClientThread extends Thread{
-	protected Socket socket;
 
-	    public ClientThread(Socket clientSocket) {
-	        this.socket = clientSocket;
-	    }
-	    
-	    public void run(){
-	    	
-	    	
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class ClientThread{
+	protected Socket socket;
+	DataInputStream input;
+	Queue<String> messages = new PriorityQueue<String>();
+	
+	public ClientThread(Socket s) {
+		this.socket = s;
+	}
+	
+	public void input() throws Exception {
+			//establish connection
 			try {
-				
-				
+				input = new DataInputStream(this.socket.getInputStream());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.err.println(e);
 			}
 			
-	    	
-	    }
-	    
-	    public static void setup(Message x){
-	    	Queue<Message> MessageQueue = new LinkedList<Message>();
-	    	
-	    	
-	    }
-
+			//communicate with client
+			try {
+				String in = input.readUTF();
+				if (!in.equals(null)) {
+					this.messages.add(in);
+				}
+			} catch (IOException e) {
+				System.err.println(e);
+			}
 	}
-
-
+	
+	public String output() {
+		if (!this.messages.isEmpty()) {
+			return this.messages.remove();
+		} else {
+			return null;
+		}
+	}
+}

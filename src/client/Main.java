@@ -2,54 +2,34 @@ package client;
 
 import java.util.*;
 import java.io.*;
-import java.net.Socket;
+import java.net.*;
 
 public class Main {
 	static Scanner scan = new Scanner(System.in);
 	static Socket socket;
+	final static int port = 8080;
 	static DataInputStream input;
 	static DataOutputStream output;
-	final static int port = 1234;
-	static String host = null;
-	static String myName = null;
 	
-	public static void main(String[] args) throws Exception {
-		System.out.println("Enter the URL of the server.");
-		host = scan.nextLine();
+	public static void main(String[] args) throws Exception{
+		System.out.println("Please enter the server ip.");
+		String connectIp = scan.nextLine();
 		
-		/*
-		 * connect to server
-		 * initiate I/O streams
-		 * establish user name
-		 */
+		//setup
 		try {
-			socket = new Socket(host,port);
+			socket = new Socket(connectIp, port);
 			input = new DataInputStream(socket.getInputStream());
 			output = new DataOutputStream(socket.getOutputStream());
-			
-			
-		} catch (IOException e) {
+		}	catch (IOException e) {
 			System.err.println(e);
 		}
 		
-		/*
-		 * client/server communication
-		 */
-		try {
-			while (true) {
-				String fromServer = input.readUTF();
-				String[] split = fromServer.split(" ");
-				if (fromServer != null && !split[0].equals(myName)) {
-					System.out.println(fromServer);
-				}
-				String toServer = scan.nextLine();
-				if (toServer != null) {
-					output.writeUTF(myName+": "+toServer);
-					output.flush();
-				}
-			}
-		} catch (IOException e) {
-			System.err.println(e);
+		//I/O
+		while (true) {
+			String received = input.readUTF();
+			String toSend = scan.nextLine();
+			System.out.println(received);
+			output.writeUTF(toSend);
 		}
 	}
 	
