@@ -23,27 +23,35 @@ public class ClientThread extends Thread{
 	    static String fromServer;
 	    static DataInputStream input;
     	static DataOutputStream output;
-	    public void run(){
+    	static BufferedReader in;
+	    @SuppressWarnings("deprecation")
+		public void run(){
 	    	
-
+	    	
 	    	 
 			try {
-				input = new DataInputStream(socket.getInputStream());
+				in = new BufferedReader (new InputStreamReader(socket.getInputStream()));
 				output = new DataOutputStream(socket.getOutputStream());
 
 			}catch(IOException e){
-				
+				System.out.println(e);
 			}
 			
 			while(true){
-				
+				System.out.println("E");
 				try {
-					fromServer = input.readUTF();
+					String meme;
+					
+					while((meme = in.readLine())!=null){
+						System.out.println(meme);
+					}
+					System.out.println("E1");
+					fromServer = input.readLine();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					System.out.println(e);
 					e.printStackTrace();
 				}
-				
+				System.out.println(fromServer);
 				Main.notifyAllOfMessage(fromServer);
 			
 				
@@ -59,7 +67,7 @@ public class ClientThread extends Thread{
 				output.flush();
 			} 
 			catch(IOException e){
-				
+				System.out.println(e);
 			}
 		}
 			
