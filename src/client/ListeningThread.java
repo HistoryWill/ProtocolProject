@@ -16,9 +16,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 public class ListeningThread extends Thread{
 	protected Socket socket;
+	
 	static Queue<String> clientmessageStack = new LinkedList<String>();
 	    public ListeningThread(Socket clientSocket) {
 	        this.socket = clientSocket;
+	       
 	    }
 	    static String fromServer;
 	    static DataInputStream input;
@@ -38,8 +40,6 @@ public class ListeningThread extends Thread{
 			}
 			
 			while(true){
-				System.out.println("E");
-				messageNotify("Fuck you");
 				try {
 					String meme;
 					
@@ -54,7 +54,7 @@ public class ListeningThread extends Thread{
 					e.printStackTrace();
 				}
 				System.out.println(fromServer);
-				Main.notifyAllOfMessage(fromServer);
+				Main.notifyOfMessage(fromServer);
 			
 				
 				

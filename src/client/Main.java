@@ -13,38 +13,51 @@ public class Main {
 	static Socket socket;
 	static DataInputStream input;
 	static OutputStream output;
-	final static int portNumber = 1234;
+	final static int port = 1234;
 	static String host = null;
+	static String inpu;
 	static String myName = null;
 	static PrintWriter out;
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Enter the URL of the server.");
 		host = scan.nextLine();
-		//System.out.println("Test Server");
-    	try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
-    	System.out.println("Helpa");
+		
+		/*
+		 * connect to server
+		 * initiate I/O streams
+		 * establish user name
+		 */
+		try {
+			socket = new Socket(host,port);
+			input = new DataInputStream(socket.getInputStream());
+			output = socket.getOutputStream();		
+			out = new PrintWriter(output);
+			
+		} catch (IOException e) {
+			System.err.println(e);
+		}
     	
-    			
-    			try {
-    				socket = serverSocket.accept();
-        			// new thread for a client
-    				ListeningThread client = new ListeningThread(socket); 
-    				
-    				client.start();
-    				
-    			} catch (IOException e) {
-    				System.out.println("I/O error: " + e);
-    			}
+   		
+    			ListeningThread client = new ListeningThread(socket); 
+   
+				client.start();
+				System.out.println("Listening");
     		
+		while(true){
+			inpu = scan.nextLine();
+			client.messageNotify(inpu);
+			
+			
+		}
     	
-    	} catch(IOException e){
-    		System.out.println(e);
-    	}
-	}
+	} 
 	
-	public static void NotifyOfTraffic(String message){
-		System.out.println(message);
+	public static void notifyOfMessage(String x){
+		System.out.println(x);
 		
 	}
+	
+	
+
 }
