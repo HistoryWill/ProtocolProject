@@ -1,5 +1,12 @@
 package server;
 
+<<<<<<< HEAD
+=======
+
+import java.net.ServerSocket;
+import java.util.HashSet;
+import java.util.Queue;
+>>>>>>> master
 
 
 import java.io.IOException;
@@ -11,12 +18,19 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Main {
+<<<<<<< HEAD
 	final static int  portNumber = 8080;
 	static ServerSocket serverSocket = null;
     static Socket socket = null;
     static Queue<String> messageStack = new LinkedList(); //This will act as the central message Depositroy
     
     static ArrayList<ClientThread> clients = new ArrayList<>();
+=======
+	final static int  portnumber = 1234;
+	static ServerSocket serverSocket = null;
+    static Socket socket = null;
+    static Queue<String> messageStack = new LinkedList(); //This will act as the central message Depositroy
+>>>>>>> master
     
     public static void main(String args[]){
     	
@@ -40,6 +54,7 @@ public class Main {
     }
     
     
+<<<<<<< HEAD
     
     
 
@@ -52,3 +67,10 @@ public class Main {
 
 
 }
+=======
+
+    public static void severLoop(){
+    	
+    }
+
+>>>>>>> master

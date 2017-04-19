@@ -24,9 +24,12 @@ public class ClientThread extends Thread{
 	    static DataInputStream input;
     	static DataOutputStream output;
 	    public void run(){
+<<<<<<< HEAD
 	    	
 
 	    	 
+=======
+>>>>>>> master
 			try {
 				input = new DataInputStream(socket.getInputStream());
 				output = new DataOutputStream(socket.getOutputStream());
@@ -53,6 +56,7 @@ public class ClientThread extends Thread{
 			
 	    	
 	    }
+<<<<<<< HEAD
 		public void messageNotify(String fromServer2) {
 			try {
 				output.writeUTF(fromServer2);
@@ -65,5 +69,15 @@ public class ClientThread extends Thread{
 			
 			
 		}
+=======
+	    
+	    public void setup(){
+	    	Queue<String> MessageQueue = new LinkedList<String>();
+	    	
+	    
+	    }
+
+	}
+>>>>>>> master
 
 
