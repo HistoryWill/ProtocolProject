@@ -31,14 +31,8 @@ public class ClientThread extends Thread{
 				input = new DataInputStream(socket.getInputStream());
 				output = new DataOutputStream(socket.getOutputStream());
 
-	    	
-			try {
+			}catch(IOException e){
 				
-				
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			
 			while(true){
@@ -49,18 +43,9 @@ public class ClientThread extends Thread{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				Main.messageStack.add(fromServer);
-				if(clientmessageStack.isEmpty() == false){
-					String x = clientmessageStack.poll();
-					
-					try {
-						output.writeUTF(x);
-						output.flush();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
+				
+				Main.notifyAllOfMessage(fromServer);
+			
 				
 				
 				
@@ -68,13 +53,17 @@ public class ClientThread extends Thread{
 			
 	    	
 	    }
-	    
-	    public static void setup(Message x){
-	    	Queue<Message> MessageQueue = new LinkedList<Message>();
-	    	
-	    	
-	    }
-
-	}
+		public void messageNotify(String fromServer2) {
+			try {
+				output.writeUTF(fromServer2);
+				output.flush();
+			} 
+			catch(IOException e){
+				
+			}
+		}
+			
+			
+		}
 
 
