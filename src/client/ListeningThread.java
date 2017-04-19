@@ -1,4 +1,4 @@
-package server;
+package client;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -14,10 +14,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
-public class ClientThread extends Thread{
+public class ListeningThread extends Thread{
 	protected Socket socket;
 	static Queue<String> clientmessageStack = new LinkedList<String>();
-	    public ClientThread(Socket clientSocket) {
+	    public ListeningThread(Socket clientSocket) {
 	        this.socket = clientSocket;
 	    }
 	    static String fromServer;
@@ -75,5 +75,3 @@ public class ClientThread extends Thread{
 			
 			
 		}
-
-
