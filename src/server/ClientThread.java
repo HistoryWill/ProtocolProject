@@ -32,7 +32,7 @@ public class ClientThread extends Thread{
 			}catch(IOException e){
 				
 			}
-			
+			System.out.println("FUCK GIT");
 			while(true){
 				
 				try {
