@@ -1,7 +1,11 @@
 package client;
 
 import java.util.*;
+
+import server.ClientThread;
+
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
@@ -11,6 +15,7 @@ public class Main {
 	static OutputStream output;
 	final static int port = 1234;
 	static String host = null;
+	static String inpu;
 	static String myName = null;
 	static PrintWriter out;
 	
@@ -32,27 +37,27 @@ public class Main {
 		} catch (IOException e) {
 			System.err.println(e);
 		}
-		
-		/*
-		 * client/server communication
-		 */
-		try {
-			while (true) {
-				String fromServer = input.readUTF();
-				String[] split = fromServer.split(" ");
-				if (fromServer != null && !split[0].equals(myName)) {
-					System.out.println(fromServer);
-				}
-				String toServer = scan.nextLine();
-				System.out.println('E');
-				if (toServer != null) {
-					out.print(myName+": "+toServer);
-					//output.flush();
-				}
-			}
-		} catch (IOException e) {
-			System.err.println(e);
+    	
+   		
+    			ListeningThread client = new ListeningThread(socket); 
+   
+				client.start();
+				System.out.println("Listening");
+    		
+		while(true){
+			inpu = scan.nextLine();
+			client.messageNotify(inpu);
+			
+			
 		}
+    	
+	} 
+	
+	public static void notifyOfMessage(String x){
+		System.out.println(x);
+		
 	}
 	
+	
+
 }
