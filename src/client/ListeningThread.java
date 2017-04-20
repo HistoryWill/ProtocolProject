@@ -16,7 +16,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 public class ListeningThread extends Thread{
 	protected Socket socket;
-	static Queue<String> clientmessageStack = new LinkedList<String>();
 	    public ListeningThread(Socket clientSocket) {
 	        this.socket = clientSocket;
 	    }
