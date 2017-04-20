@@ -48,10 +48,10 @@ public class Main {
 			
 		}
 	}
-	public static void NotifyOfMEssage(String x){
-		System.out.println(x);
-		
-	}
+	 public static void fuckgit(String x){
+		 System.out.println(x);
+		 
+	 }
 	
 	}
 	
