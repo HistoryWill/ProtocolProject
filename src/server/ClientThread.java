@@ -56,11 +56,12 @@ public class ClientThread extends Thread{
 
 		public void messageNotify(String fromServer2) {
 			try {
+				System.out.println(fromServer2 + "fewrfwef");
 				output.writeUTF(fromServer2);
 				output.flush();
 			} 
 			catch(IOException e){
-				
+				System.out.println(e);
 			}
 		}
 			
@@ -68,11 +69,7 @@ public class ClientThread extends Thread{
 		
 
 	    
-	    public void setup(){
-	    	Queue<String> MessageQueue = new LinkedList<String>();
-	    	
 	    
-	    }
 
 	}
 
