@@ -38,9 +38,11 @@ public class Main {
 		}
 	
 	
-		// Creates a new listening 
+		/*
+		 * Creates a new listening thread that waits for messages from the server 
+		 * (see ListeningThread class for details). 
+		 */
 		ListeningThread client = new ListeningThread(socket); 
-		
 		client.start();
 		System.out.println("Please Enter Chat Name");
 		myName = scan.nextLine();
