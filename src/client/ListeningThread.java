@@ -37,14 +37,11 @@ public class ListeningThread extends Thread{
 			
 			while(true){
 				try {
-					String meme;
-					
-					
 					fromServer = input.readUTF();
 					//System.out.println("FIXED" + fromServer);
-				} catch (IOException e) {
-					System.out.println(e);
-					e.printStackTrace();
+				} catch (IOException ReadError) {
+					System.out.println(ReadError);
+					ReadError.printStackTrace();
 				}
 				
 				Main.MessageStater(fromServer);
@@ -58,8 +55,8 @@ public class ListeningThread extends Thread{
 				output.writeUTF(name+ ":"+fromServer2);
 				output.flush();
 			} 
-			catch(IOException e){
-				System.out.println(e);
+			catch(IOException WriteError){
+				System.out.println(WriteError);
 			}
 		}
 			
