@@ -49,7 +49,7 @@ public class ListeningThread extends Thread{
 					System.out.println("E1");
 					fromServer = in.readLine();*/
 					fromServer = input.readUTF();
-					
+					System.out.println("FIXED" + fromServer);
 				} catch (IOException e) {
 					System.out.println(e);
 					e.printStackTrace();

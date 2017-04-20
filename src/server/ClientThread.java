@@ -21,8 +21,8 @@ public class ClientThread extends Thread{
 	        this.socket = clientSocket;
 	    }
 	    static String fromServer;
-	    static DataInputStream input;
-    	static DataOutputStream output;
+	    protected DataInputStream input;
+    	protected DataOutputStream output;
 	    public void run(){
 
 			try {
@@ -59,6 +59,7 @@ public class ClientThread extends Thread{
 				System.out.println(fromServer2 + "fewrfwef");
 				output.writeUTF(fromServer2);
 				output.flush();
+				System.out.println(output);
 			} 
 			catch(IOException e){
 				System.out.println(e);
