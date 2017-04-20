@@ -1,4 +1,4 @@
-package server;
+package client;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -14,52 +14,50 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
-public class ClientThread extends Thread{
+public class ListeningThread extends Thread{
 	protected Socket socket;
 	static Queue<String> clientmessageStack = new LinkedList<String>();
-	    public ClientThread(Socket clientSocket) {
+	    public ListeningThread(Socket clientSocket) {
 	        this.socket = clientSocket;
 	    }
 	    static String fromServer;
-	    protected DataInputStream input;
-    	protected DataOutputStream output;
-	    public void run(){
-
+	  
+	    static DataInputStream input;
+    	static DataOutputStream output;
+    	static BufferedReader in;
+	    @SuppressWarnings("deprecation")
+		public void run(){
+	    	 
 			try {
-				input = new DataInputStream(socket.getInputStream());
+				input =new DataInputStream(socket.getInputStream());
 				output = new DataOutputStream(socket.getOutputStream());
 
 			}catch(IOException e){
-				System.out.println("GELP");
+				System.out.println(e);
 			}
 			
 			while(true){
-				
 				try {
+					String meme;
+					
+					
 					fromServer = input.readUTF();
-					//System.out.println("E1");
-					//System.out.println(fromServer);
+					//System.out.println("FIXED" + fromServer);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					System.out.println(e);
 					e.printStackTrace();
 				}
 				
-				Main.notifyAllOfMessage(fromServer);
+				Main.MessageStater(fromServer);
 			
-				
-				
-				
 			}
 			
 	    	
 	    }
-
-		public void messageNotify(String fromServer2) {
+		public void messageNotify(String fromServer2, String name) {
 			try {
-				//System.out.println(fromServer2 + "fewrfwef");
-				output.writeUTF(fromServer2);
+				output.writeUTF(name+ ":"+fromServer2);
 				output.flush();
-				//System.out.println(output);
 			} 
 			catch(IOException e){
 				System.out.println(e);
@@ -67,12 +65,4 @@ public class ClientThread extends Thread{
 		}
 			
 			
-		
-
-	    
-	    
-
-	}
-
-
-
+		}
