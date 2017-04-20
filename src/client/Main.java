@@ -41,12 +41,22 @@ public class Main {
 		/*
 		 * Creates a new listening thread that waits for messages from the server 
 		 * (see ListeningThread class for details). 
+		 * Subsequently the thread is started 
 		 */
 		ListeningThread client = new ListeningThread(socket); 
 		client.start();
+		
+		/*
+		 * Asks the user to enter there preferred user name and then scans it from the next line
+		 * entered by the user using the scanner. 
+		 */
 		System.out.println("Please Enter Chat Name");
 		myName = scan.nextLine();
 		
+		/*
+		 * This loop asks the user to enter a message, scans it in if it is entered, and then
+		 * sends it to the ListenerThread. 
+		 */
 		while(true){
 			System.out.println("Please Enter Message");
 			line = scan.nextLine();
@@ -55,6 +65,10 @@ public class Main {
 			
 		}
 	}
+	
+	/*
+	 * Handles printing incoming messages to the user
+	 */
 	 public static void MessageStater(String x){
 		 System.out.println(x);
 		 
