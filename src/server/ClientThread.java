@@ -30,13 +30,15 @@ public class ClientThread extends Thread{
 				output = new DataOutputStream(socket.getOutputStream());
 
 			}catch(IOException e){
-				
+				System.out.println("GELP");
 			}
 			System.out.println("FUCK GIT");
 			while(true){
 				
 				try {
 					fromServer = input.readUTF();
+					System.out.println("E1");
+					fromServer = input.readLine();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
