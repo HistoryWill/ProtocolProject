@@ -31,8 +31,8 @@ public class ListeningThread extends Thread{
 				input =new DataInputStream(socket.getInputStream());
 				output = new DataOutputStream(socket.getOutputStream());
 
-			}catch(IOException e){
-				System.out.println(e);
+			}catch(IOException DataStreamFailure){
+				System.out.println(DataStreamFailure);
 			}
 			
 			while(true){
