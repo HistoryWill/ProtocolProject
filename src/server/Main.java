@@ -55,6 +55,8 @@ public class Main {
 
 	public static void notifyAllOfMessage(String fromServer) {
 		for(ClientThread client : clients) {
+			System.out.println(clients.size());
+			System.out.println(client);
 			System.out.println("FUG");
 			client.messageNotify(fromServer);
 		}
