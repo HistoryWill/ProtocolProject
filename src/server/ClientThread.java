@@ -21,8 +21,8 @@ public class ClientThread extends Thread{
 	        this.socket = clientSocket;
 	    }
 	    static String fromServer;
-	    static DataInputStream input;
-    	static DataOutputStream output;
+	    protected DataInputStream input;
+    	protected DataOutputStream output;
 	    public void run(){
 
 			try {
@@ -32,13 +32,13 @@ public class ClientThread extends Thread{
 			}catch(IOException e){
 				System.out.println("GELP");
 			}
-			System.out.println("FUCK GIT");
+			
 			while(true){
 				
 				try {
 					fromServer = input.readUTF();
-					System.out.println("E1");
-					System.out.println(fromServer);
+					//System.out.println("E1");
+					//System.out.println(fromServer);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -56,11 +56,13 @@ public class ClientThread extends Thread{
 
 		public void messageNotify(String fromServer2) {
 			try {
+				//System.out.println(fromServer2 + "fewrfwef");
 				output.writeUTF(fromServer2);
 				output.flush();
+				//System.out.println(output);
 			} 
 			catch(IOException e){
-				
+				System.out.println(e);
 			}
 		}
 			
@@ -68,11 +70,7 @@ public class ClientThread extends Thread{
 		
 
 	    
-	    public void setup(){
-	    	Queue<String> MessageQueue = new LinkedList<String>();
-	    	
 	    
-	    }
 
 	}
 

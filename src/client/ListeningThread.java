@@ -16,21 +16,19 @@ import java.util.LinkedList;
 import java.util.Queue;
 public class ListeningThread extends Thread{
 	protected Socket socket;
-	static Queue<String> clientmessageStack = new LinkedList<String>();
 	    public ListeningThread(Socket clientSocket) {
 	        this.socket = clientSocket;
 	    }
 	    static String fromServer;
+	  
 	    static DataInputStream input;
     	static DataOutputStream output;
     	static BufferedReader in;
 	    @SuppressWarnings("deprecation")
 		public void run(){
-	    	
-	    	
 	    	 
 			try {
-				in = new BufferedReader (new InputStreamReader(socket.getInputStream()));
+				input =new DataInputStream(socket.getInputStream());
 				output = new DataOutputStream(socket.getOutputStream());
 
 			}catch(IOException e){
@@ -41,29 +39,23 @@ public class ListeningThread extends Thread{
 				try {
 					String meme;
 					
-					while((meme = in.readLine())!=null){
-						System.out.println(meme);
-						System.out.println("got to");
-					}
-					System.out.println("E1");
-					fromServer = input.readLine();
+					
+					fromServer = input.readUTF();
+					//System.out.println("FIXED" + fromServer);
 				} catch (IOException e) {
 					System.out.println(e);
 					e.printStackTrace();
 				}
-				System.out.println(fromServer);
-				Main.fuckgit(fromServer);
+				
+				Main.MessageStater(fromServer);
 			
-				
-				
-				
 			}
 			
 	    	
 	    }
-		public void messageNotify(String fromServer2) {
+		public void messageNotify(String fromServer2, String name) {
 			try {
-				output.writeUTF(fromServer2);
+				output.writeUTF(name+ ":"+fromServer2);
 				output.flush();
 			} 
 			catch(IOException e){
