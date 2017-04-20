@@ -1,6 +1,5 @@
 package server;
 
-<<<<<<< HEAD
 import java.util.*;
 import java.io.*;
 import java.net.*;
