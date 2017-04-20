@@ -21,14 +21,12 @@ public class ListeningThread extends Thread{
 	        this.socket = clientSocket;
 	    }
 	    static String fromServer;
-	   // static InputStreamReader input;
+	  
 	    static DataInputStream input;
     	static DataOutputStream output;
     	static BufferedReader in;
 	    @SuppressWarnings("deprecation")
 		public void run(){
-	    	
-	    	
 	    	 
 			try {
 				input =new DataInputStream(socket.getInputStream());
@@ -42,31 +40,23 @@ public class ListeningThread extends Thread{
 				try {
 					String meme;
 					
-					/*while((meme = in.readLine())!=null){
-						System.out.println(meme);
-						System.out.println("got to");
-					}
-					System.out.println("E1");
-					fromServer = in.readLine();*/
+					
 					fromServer = input.readUTF();
-					System.out.println("FIXED" + fromServer);
+					//System.out.println("FIXED" + fromServer);
 				} catch (IOException e) {
 					System.out.println(e);
 					e.printStackTrace();
 				}
 				
-				Main.fuckgit(fromServer);
+				Main.MessageStater(fromServer);
 			
-				
-				
-				
 			}
 			
 	    	
 	    }
-		public void messageNotify(String fromServer2) {
+		public void messageNotify(String fromServer2, String name) {
 			try {
-				output.writeUTF(fromServer2);
+				output.writeUTF(name+ ":"+fromServer2);
 				output.flush();
 			} 
 			catch(IOException e){
