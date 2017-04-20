@@ -21,6 +21,7 @@ public class ListeningThread extends Thread{
 	        this.socket = clientSocket;
 	    }
 	    static String fromServer;
+	   // static InputStreamReader input;
 	    static DataInputStream input;
     	static DataOutputStream output;
     	static BufferedReader in;
@@ -30,7 +31,7 @@ public class ListeningThread extends Thread{
 	    	
 	    	 
 			try {
-				in = new BufferedReader (new InputStreamReader(socket.getInputStream()));
+				input =new DataInputStream(socket.getInputStream());
 				output = new DataOutputStream(socket.getOutputStream());
 
 			}catch(IOException e){
@@ -41,17 +42,19 @@ public class ListeningThread extends Thread{
 				try {
 					String meme;
 					
-					while((meme = in.readLine())!=null){
+					/*while((meme = in.readLine())!=null){
 						System.out.println(meme);
 						System.out.println("got to");
 					}
 					System.out.println("E1");
-					fromServer = input.readLine();
+					fromServer = in.readLine();*/
+					fromServer = input.readUTF();
+					
 				} catch (IOException e) {
 					System.out.println(e);
 					e.printStackTrace();
 				}
-				System.out.println(fromServer);
+				
 				Main.fuckgit(fromServer);
 			
 				
