@@ -34,21 +34,24 @@ public class Main {
 		} catch (IOException e) {
 			System.err.println(e);
 		}
-		System.out.println("FUCK GIT1");
-		
+	
+	
 		// new thread for a client
 		ListeningThread client = new ListeningThread(socket); 
 		
 		client.start();
+		System.out.println("Please Enter Chat Name");
+		myName = scan.nextLine();
 		
 		while(true){
+			System.out.println("Please Enter Message");
 			line = scan.nextLine();
-			client.messageNotify(line);
+			client.messageNotify(line, myName);
 			
 			
 		}
 	}
-	 public static void fuckgit(String x){
+	 public static void MessageStater(String x){
 		 System.out.println(x);
 		 
 	 }
