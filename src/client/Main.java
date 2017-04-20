@@ -31,8 +31,8 @@ public class Main {
 			socket = new Socket(host,port);
 			
 			
-		} catch (IOException e) {
-			System.err.println(e);
+		} catch (IOException CannotCreateSocket) {
+			System.err.println(CannotCreateSocket);
 		}
 	
 	
