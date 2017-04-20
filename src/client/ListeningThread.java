@@ -38,8 +38,6 @@ public class ListeningThread extends Thread{
 			}
 			
 			while(true){
-				System.out.println("E");
-				messageNotify("Fuck you");
 				try {
 					String meme;
 					
@@ -54,7 +52,7 @@ public class ListeningThread extends Thread{
 					e.printStackTrace();
 				}
 				System.out.println(fromServer);
-				Main.notifyAllOfMessage(fromServer);
+				Main.NotifyOfMEssage(fromServer);
 			
 				
 				
