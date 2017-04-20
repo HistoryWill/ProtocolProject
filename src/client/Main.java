@@ -18,25 +18,27 @@ public class Main {
 	static String line;
 	static PrintWriter out;
 	
+	
 	public static void main(String[] args) throws Exception {
+		/*
+		 * Asks the user for the Name of the host server.
+		 * Uses Scanner to set the host to the next line entered by the user
+		 */
 		System.out.println("Enter the URL of the server.");
 		host = scan.nextLine();
 		
 		/*
-		 * connect to server
-		 * initiate I/O streams
-		 * establish user name
+		 * Attempts to create a socket connected to the host and the pre-specified port number:1234
+		 * Throws an exception if the socket cannot be created
 		 */
 		try {
 			socket = new Socket(host,port);
-			
-			
 		} catch (IOException CannotCreateSocket) {
 			System.err.println(CannotCreateSocket);
 		}
 	
 	
-		// new thread for a client
+		// Creates a new listening 
 		ListeningThread client = new ListeningThread(socket); 
 		
 		client.start();

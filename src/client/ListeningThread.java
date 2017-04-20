@@ -37,7 +37,6 @@ public class ListeningThread extends Thread{
 			
 			while(true){
 				try {
-					String meme;
 					
 					
 					fromServer = input.readUTF();
