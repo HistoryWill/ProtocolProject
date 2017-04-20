@@ -38,7 +38,7 @@ public class ClientThread extends Thread{
 				try {
 					fromServer = input.readUTF();
 					System.out.println("E1");
-					fromServer = input.readLine();
+					System.out.println(fromServer);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

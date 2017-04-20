@@ -52,7 +52,7 @@ public class ListeningThread extends Thread{
 					e.printStackTrace();
 				}
 				System.out.println(fromServer);
-				Main.NotifyOfMEssage(fromServer);
+				Main.fuckgit(fromServer);
 			
 				
 				
