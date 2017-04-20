@@ -1,11 +1,13 @@
 package client;
 
 import java.util.*;
-
-import server.ClientThread;
-
 import java.io.*;
 import java.net.Socket;
+
+/*
+ * @author Francis
+ * @author Andy
+ */
 
 public class Main {
 	static Scanner scan = new Scanner(System.in);

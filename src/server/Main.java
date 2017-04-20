@@ -4,13 +4,15 @@ import java.net.ServerSocket;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Stack;
 
+/*
+ * @author Will
+ * @author JR
+ */
 public class Main {
-
-
-    
+	/*
+	 * clients: list of clients
+	 */
     static ArrayList<ClientThread> clients = new ArrayList<>();
 	final static int  portNumber = 1234;
 	static ServerSocket serverSocket = null;
@@ -31,12 +33,12 @@ public class Main {
     				clients.add(client);
     				client.start();
     			} catch (IOException e) {
-    				System.out.println("I/O error: " + e);
+    				System.out.println("Client Error");
     			}
     		}
     	
     	} catch(IOException e){
-    		System.out.println(e);
+    		System.out.println("Server Socket Error");
     	}
     }
     

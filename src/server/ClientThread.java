@@ -14,6 +14,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
+
+/*
+ * @author Will
+ * @author Andy
+ */
 public class ClientThread extends Thread{
 	protected Socket socket;
 	static Queue<String> clientmessageStack = new LinkedList<String>();
